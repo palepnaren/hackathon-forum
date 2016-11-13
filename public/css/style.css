@@ -58,6 +58,10 @@
     list-style: none;
 }
 
+ul{
+  background-attachment: fixed;
+}
+
 
 
 
