@@ -142,7 +142,7 @@ exports.logout = function(req, res){
 
 exports.search = function(req, res){
 var key = req.body.search;
-Forum.find({topic:{ "$regex": key, "$options": "i" }},function(err, result){
+Forum.find({"topic":{ "$regex": key, "$options": "i" }},function(err, result){
          if(err){
            console.log("can't find.");
            alert("Try again later.");
