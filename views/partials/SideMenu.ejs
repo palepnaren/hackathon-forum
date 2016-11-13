@@ -1,0 +1,42 @@
+<div id="sidebar-wrapper">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+    <div class="navbar navbar-default navbar-fixed-side sidenav">
+      <div align="center">
+        <h2>Forum</h2>
+        <img class="img-circle" src="/images/forum.jpeg" style="width:100px;height:100px">
+      </div>
+
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a align="center" href="#">Dashboard</a></li>
+        <% if( typeof(session.loggedIn) == 'undefined' ) {%>
+        <li><a type="button" href="/login" class="btn btn-primary btn-md">Login</a></li>
+        <li><a type="button" href="/register" class="btn btn-success btn-md">Sign Up</a></li>
+          <%} else{%>
+        <li><a align="center" href="#"><%=session.username%></a></li>
+        <li><a type="button" align="center" href="/logout" class="btn btn-danger btn-md">Logout</a></li>
+        <%}%>
+        <li><a align="center" href="/ask">Ask Question ?</a></li>
+        <li><a align="center" href="/queries">Topics</a></li>
+        <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+      </ul>
+
+
+  <!--  <ul class="list-group" align="center">
+      <li class="list-group-item">
+       <a href="#" class="menus"> Stories</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#" class="menus"> Write your own stories</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#" class="menus"> Tech Used</a>
+      </li>
+    </ul> -->
+
+  </div>
+         </div>
+       </div>
+        </div>
+      </div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <% include partials/Head.ejs %>
+    <style>
+    p{font-size: 16px;}
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <% include partials/SideMenu.ejs %>
+
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <form class="margin-base-vertical" method="post" action="/search">
+                        <p class="input-group ">
+              						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+              						<input type="search" required class="form-control input-lg" name="search" placeholder="enter key to search topic" required/>
+              					</p><br/><br/>
+                      <a href="#menu-toggle" class="btn btn-success" id="menu-toggle">Toggle Screen</a><br/><br/>
+
+
+                      <% for(var i=0; i < query.length;i++){%>
+                        <br/><br/>
+                       <h1><%=query[i].topic%></h1>
+                       <h4>Created by <code><%=query[i].author%> on <%=query[i].time %> </code></h4><br/><br/>
+
+                       <%-query[i].body%>
+                          <br/><br/>
+                          <h1>Comments :</h1><br/>
+                        <% for(var j=0; j < query[i].comments.length;j++){%>
+
+
+                       <% if(typeof(query[i].comments[j])!=='undefined') {%>
+
+                            <p><%=query[i].comments[j].data%></p>
+                            <h5>Commented by <code><%=query[i].comments[j].created_by%> on <%= query[i].comments[j].date  %></code></h5>
+                            <br/><br/>
+                        <% } %>
+                       <% } %>
+
+                       <% if( typeof(session.loggedIn) !== 'undefined' ) {%>
+                         <form method="post" action="/queries/<%=query[i]._id%>">
+                           <div class="form-group">
+                               <label for="message" class="col-sm-2 control-label">Add your comments: </label>
+                                   <div class="col-sm-6">
+                                      <textarea class="form-control" required name="comment" rows="4" placeholder="Add your commments "></textarea>
+                                   </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="">
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                              </div>
+                            </div>
+                         </form>
+                       <%}%>
+                       <%}%>
+                    </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+    <% include partials/Footer.ejs %>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Welcome new user <%=session.username%> !</title>
+    <% include partials/Head.ejs %>
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                      <h1 align="center" class="text text-center text-capitalize">
+                        Welcome!!
+                      </h1>
+                      <br/><br/><br/>
+
+                   <blockquote class="well">
+                  Congratulation <code><%=session.username%></code>, your account have been created successfully<br/>
+                  Please click here to go back to <a href="/login">login</a> page.
+                  </blockquote>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+      <% include partials/Footer.ejs %>
+
+</body>
+
+</html>

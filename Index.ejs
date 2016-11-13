@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <% include partials/Head.ejs %>
+    <style>
+    p{font-size: 16px;}
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <% include partials/SideMenu.ejs %>
+
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <a href="#menu-toggle" class="btn btn-success" id="menu-toggle">Toggle Screen</a><br/><br/>
+
+                      <% for(var i=0; i < query.length;i++){%>
+                       <h1><%=query[i].topic%></h1>
+                       <h4>Created by <code><%=query[i].author%> on <%=query[i].time %> </code></h4><br/><br/>
+
+
+                       <%-query[i].body%>
+                          <br/><br/>
+                          <% if(typeof(query.comments)!=='undefined') {%>
+                       <% if( query.comments[i].length>0 ) {%>
+                            <h1>Comments :</h1><br/>
+                       <%}%>
+                       <% for(var i=0; i < query.comments.length; i++) { %>
+                                 <p><%= query.comments[i].type %></p>
+                                 <h4>Commented by <code><%=query.comments[i].created_by%> on <%= query.comments[i].date.toUTCString()  %></code></h4>
+                                 <br/><br/>
+                       <% } %>
+                       <% } %>
+
+                       <% if( session.loggedIn !== 'true' ) {%>
+                         <form method="post" action="">
+                           <div class="form-group">
+                               <label for="message" class="col-sm-2 control-label">Add your comments: </label>
+                                   <div class="col-sm-6">
+                                      <textarea class="form-control" required name="comment" rows="4" placeholder="Add your commments "></textarea>
+                                   </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="">
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                              </div>
+                            </div>
+                         </form>
+                       <%}%>
+                       <%}%>
+                    </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+    <% include partials/Footer.ejs %>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

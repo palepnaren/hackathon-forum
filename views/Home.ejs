@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create your Story...</title>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.js"></script>
+</head>
+<body>
+
+  <div class="row">
+      <div class="container">
+          <blockquote>
+            <h3 class="well">Hey <code><%=session.username%></code>, Post any question below and get the answer to the question you posted from experienced people and people around the world.</h3>
+            <ol>
+              <li>Topic of the question.</li>
+              <li>Actual query.</li>
+            </ol>
+          </blockquote>
+
+          <blockquote>
+            <h3>Don't have anything to share? Check these <a href="/queries">queries</a></h3>
+          </blockquote>
+      </div>
+    </div>
+<br/><br/>
+
+<div class="row">
+    <div class="container">
+       <div class="col-lg-10">
+        <form action="/creatQuery" method="post">
+          <h1 align="center" class="margin-base-vertical">Post what's your problem to be solved.</h1>
+              <% if( typeof(error) !== 'undefined' ) {%>
+          <div align="center">
+           <code><%=error%></code>
+         </div>
+         <%}%>
+
+            <div class="form-group">
+               <label for="name" class="col-sm-2 control-label">Title</label>
+                 <div class="col-sm-6">
+                 <input type="text" name="topic" required class="form-control" placeholder="Query Topic"/>
+
+                 </div>
+
+                <br/><br/><br/><br/>
+
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">Post</label>
+                   <div class="col-lg-10">
+                    <textarea name="content" id="storyContent" required rows="8" class="form-control"></textarea>
+                   </div>
+                </div>
+
+                <div class="form-group">
+                     <div class="col-sm-offset-6 col-sm-6">
+                       <button type="submit" class="btn btn-primary">Post</button>
+                       <button type="reset" class="btn btn-danger">clear</button>
+                     </div>
+                </div>
+
+            </form>
+
+
+            </div>
+        </div>
+    </div>
+  <br/><br/>
+
+  <script>
+    $(document).ready(function() {
+        $('#storyContent').summernote({
+          height:250,
+          toolbar: [
+
+         ['style', ['bold', 'italic', 'underline', 'clear']],
+         ['font', ['strikethrough', 'superscript', 'subscript']],
+         ['fontsize', ['fontsize']],
+         ['color', ['color']],
+         ['para', ['ul', 'ol', 'paragraph']],
+         ['height', ['height']],
+         ['link', ['linkDialogShow', 'unlink']],
+         ['table', ['table']]
+
+                 ]
+        });
+    });
+  </script>
+</body>
+</html>
