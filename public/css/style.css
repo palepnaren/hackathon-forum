@@ -25,7 +25,7 @@
     width: 0;
     height: 100%;
     margin-left: -250px;
-    overflow-y: auto;
+  /*overflow-y: auto;*/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -58,8 +58,9 @@
     list-style: none;
 }
 
-ul{
+div.container{
   background-attachment: fixed;
+  background: fixed;
 }
 
 
