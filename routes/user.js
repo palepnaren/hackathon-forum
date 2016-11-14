@@ -23,7 +23,7 @@ var age = req.body.age;
   creatUser.save(function(err, user){
         if(err){
           console.log(chalk.red(err));
-          var message="user alread present with same username or email address";
+          var message="user already present with same username or email address";
           res.render('Register',{errorMessage:message});
           return;
         }
